@@ -1,0 +1,188 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+/* Hero Section Styling */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+    background: linear-gradient(135deg, #e0f7fa, #fff);
+    background-size: 400% 400%;
+    animation: gradientShift 10s ease infinite; 
+}
+
+.hero-content:hover .hero-title, .hero-content:hover .hero-subtitle {
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); /* Soft shadow on hover */
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 2;
+    margin-bottom: 20px;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #333;
+    transition: text-shadow 0.3s ease;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: #666;
+    transition: text-shadow 0.3s ease;
+}
+
+.hero-images {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.hero-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+    .hero-title {
+        font-size: 4rem;
+    }
+    .hero-img {
+        width: 200px;
+        height: 200px;
+    }
+}
+/* Add opacity 0 initially for smooth GSAP animations */
+.hero-title, .hero-subtitle, .hero-img {
+    opacity: 0;
+}
+.hero-title, .hero-subtitle {
+    transition: color 0.4s ease;
+}
+/* Default image style */
+.hero-img {
+    opacity: 1; 
+    filter: grayscale(50%);
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover effect on each image */
+.hero-img:hover {
+    filter: grayscale(0%); /* Make hovered image fully visible */
+    transform: scale(1.1); /* Slightly enlarge the hovered image */
+    z-index: 1;
+    box-shadow: 0 8px 25px rgba(52, 152, 219, 0.5);
+    animation: none;
+}
+
+/* Vector-like effect for non-hovered images */
+.hero-images:hover .hero-img:not(:hover) {
+    filter: grayscale(100%) contrast(0.2) brightness(1.5);
+    transform: scale(0.9);
+}
+
+/* Text style change on hover */
+.hero-content:hover .hero-title, .hero-content:hover .hero-subtitle {
+    color: #3498db; /* Change to a vibrant color on hover */
+    transition: color 0.3s ease;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); 
+}
+/* Smooth hover transitions */
+.hero-img {
+    filter: grayscale(50%);
+    transition: filter 0.5s ease, transform 0.5s ease; /* Slower for smoother transition */
+}
+
+/* Enlarge hovered image with smoother effect */
+.hero-img:hover {
+    filter: grayscale(0%);
+    transform: scale(1.2); /* Slightly larger for emphasis */
+    z-index: 1;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+/* Vector-like effect for non-hovered images */
+.hero-images:hover .hero-img:not(:hover) {
+    filter: grayscale(100%) contrast(0.3) brightness(1.3);
+    transform: scale(0.85); /* Make it slightly smaller for contrast */
+    transition: filter 0.5s ease, transform 0.5s ease;
+}
+
+/* Text hover effect */
+.hero-content:hover .hero-title, .hero-content:hover .hero-subtitle {
+    color: #e74c3c; /* Change color on hover */
+    transition: color 0.4s ease; /* Smoother color transition */
+}
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .hero-img {
+        width: 120px;
+        height: 120px;
+        transform: scale(1); /* Reset scale for mobile */
+    }
+
+    .hero-img:hover {
+        transform: scale(1.05); /* Slightly smaller zoom for mobile */
+    }
+
+    .hero-title {
+        font-size: 2.5rem; /* Smaller title on mobile */
+    }
+}
+/* Parallax container styling */
+.parallax-container {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Layers with different movement speeds */
+.layer1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateZ(-1px) scale(1.2);
+}
+
+.layer2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateZ(-0.5px) scale(1.1);
+}
+
+.layer3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateZ(0px);
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
